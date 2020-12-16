@@ -24,7 +24,10 @@
      </rect>
     </property>
     <property name="text">
-     <string>TextLabel</string>
+     <string>Select an option</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
    </widget>
    <widget class="QPushButton" name="btnCaptureImage">
@@ -60,7 +63,7 @@
      <x>0</x>
      <y>0</y>
      <width>642</width>
-     <height>20</height>
+     <height>22</height>
     </rect>
    </property>
   </widget>

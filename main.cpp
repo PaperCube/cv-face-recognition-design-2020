@@ -1,11 +1,9 @@
 #include "mainwindow.h"
+#include "led_controller.h"
 #include <QApplication>
+
 int main(int argc, char *argv[]) {
-    wiringPiSetup();
-    pinMode(7, OUTPUT);
-    pinMode(0, OUTPUT);
-    digitalWrite(7, LOW);
-    digitalWrite(0, LOW);
+    led_controller::ensure_setup();
     QApplication a(argc, argv);
     MainWindow w;
     w.show();

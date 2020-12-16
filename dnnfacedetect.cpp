@@ -11,7 +11,7 @@ dnnfacedetect::dnnfacedetect(string modelBinary, string modelDesc) {
     inHeight = 300;
     meanVal = Scalar(104.0, 177.0, 123.0);
 }
-dnnfacedetect::~dnnfacedetect() { _net.~Net(); }
+dnnfacedetect::~dnnfacedetect() {}
 //初始化dnnnet
 bool dnnfacedetect::initdnnNet() {
     _net = dnn::readNetFromTensorflow(_modelbinary, _modeldesc);
@@ -36,7 +36,7 @@ M dnnfacedetect::detect(Mat frame) {
     Mat detection = _net.forward("detection_out");
     Mat detectionMat(detection.size[2], detection.size[3], CV_32F,
                      detection.ptr<float>());
-    //检测出的结果进行绘制和存放到dsts中
+    //检测出的结果 进行绘制和存放到dsts中
     for (int i = 0; i < detectionMat.rows; i++) {
         //置值度获取
         float confidence = detectionMat.at<float>(i, 2);

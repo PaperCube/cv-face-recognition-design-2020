@@ -31,11 +31,18 @@ LIBS += -lwiringPi -lwiringPiDev -lpthread -lrt -lm -lcrypt
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    dnnfacedetect.cpp
+    dnnfacedetect.cpp \
+    led_controller.cpp \
+    detector_thread.cpp \
+    image_converter.cpp
 
 HEADERS += \
         mainwindow.h \
-    dnnfacedetect.h
+    dnnfacedetect.h \
+    led_controller.h \
+    concurrent_util.h \
+    detector_thread.h \
+    image_converter.h
 
 FORMS += \
         mainwindow.ui
