@@ -38,6 +38,15 @@ void MainWindow::on_btnCaptureImage_clicked() {
 }
 
 void MainWindow::on_btnDetectFace_clicked() {
+    // pause / resume
+    detector_thread::State current_state = dt.state;
+    if(current_state == detector_thread::RUNNING){
+        dt.state = detector_thread::PAUSED;
+    } else if(current_state == detector_thread::PAUSED){
+        dt.state = detector_thread::RUNNING;
+    }
+
+
     //    string ModelBinary = "/opt/model/opencv_face_detector_uint8.pb";
     //    string ModelDesc = "/opt/model/opencv_face_detector.pbtxt";
     //    if (mark == false) {

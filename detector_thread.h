@@ -5,6 +5,7 @@
 #include "dnnfacedetect.h"
 #include <atomic>
 #include <functional>
+#include <mutex>
 #include <thread>
 #include <type_traits>
 
@@ -13,10 +14,17 @@ extern const char *model_configuration;
 
 class detector_thread {
   public:
-    using display_listener_t = function<void(const QImage &)>;
+    using display_listener_t = std::function<void(const QImage &)>;
 
     enum State { NOT_STARTED, RUNNING, PAUSED, CLOSED };
-    enum invocation_result { OK, ILLEGAL_STATE, CAMERA_ERROR, DNN_INITILIAZTION_FAILURE };
+    enum invocation_result {
+        OK,
+        ILLEGAL_STATE,
+        CAMERA_ERROR,
+        DNN_INITILIAZTION_FAILURE
+    };
+
+    std::atomic<State> state;
 
     detector_thread();
     virtual ~detector_thread();
@@ -29,16 +37,23 @@ class detector_thread {
     void resume();
 
   private:
+    using result_vector = std::vector<cv::Rect>;
+
     display_listener_t display_listener;
 
-    VideoCapture capture;
+    cv::VideoCapture capture;
     dnnfacedetect *face_detection = nullptr;
 
-    thread *t = nullptr;
-    Mat frame;
-    atomic<State> state;
+    std::mutex update_lock;
 
-    void run();
+    std::thread *t = nullptr;
+    std::thread *detection_worker = nullptr;
+
+    cv::Mat frame;
+    result_vector results;
+
+    void loop();
+    void work();
 };
 
 #endif // DETECTOR_THREAD_H

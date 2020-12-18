@@ -28,9 +28,9 @@ class MainWindow : public QMainWindow {
     detector_thread dt;
 
 //    QImage cvMat_to_QImage(const cv::Mat &mat);
-    VideoCapture cap;
-    Mat frame;
-    Mat pic;
+    cv::VideoCapture cap;
+    cv::Mat frame;
+    cv::Mat pic;
     QImage image;
     bool mark;
     M checkR;

@@ -1,8 +1,10 @@
 #include "dnnfacedetect.h"
 #include <QMainWindow>
 
-QImage cvMat_to_QImage(const cv::Mat &mat) {
+using namespace std;
+using namespace cv;
 
+QImage cvMat_to_QImage(const cv::Mat &mat) {
     switch (mat.type()) {
     // 8-bit, 4 channel
     case CV_8UC4: {
@@ -35,4 +37,10 @@ QImage cvMat_to_QImage(const cv::Mat &mat) {
         break;
     }
     return QImage();
+}
+
+void render(Mat &mat, vector<Rect> rectangles){
+    for(auto &r : rectangles){
+        rectangle(mat, r, Scalar(0, 0, 255));
+    }
 }
