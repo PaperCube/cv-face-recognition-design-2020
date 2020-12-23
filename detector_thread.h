@@ -21,7 +21,7 @@ class detector_thread {
         OK,
         ILLEGAL_STATE,
         CAMERA_ERROR,
-        DNN_INITILIAZTION_FAILURE
+        DNN_INITIALIZATION_FAILURE
     };
 
     std::atomic<State> state;

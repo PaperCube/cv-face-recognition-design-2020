@@ -95,7 +95,7 @@ detector_thread::invocation_result detector_thread::start(int camera_index) {
 
     face_detection = new dnnfacedetect(model_binary, model_configuration);
     if (!face_detection->initdnnNet()) {
-        return DNN_INITILIAZTION_FAILURE;
+        return DNN_INITIALIZATION_FAILURE;
     }
 
     state = RUNNING;

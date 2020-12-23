@@ -27,7 +27,7 @@ void MainWindow::on_btnCaptureImage_clicked() {
         ui->label->setText("Camera Error");
         led7.flash(500, 2);
         break;
-    case detector_thread::DNN_INITILIAZTION_FAILURE:
+    case detector_thread::DNN_INITIALIZATION_FAILURE:
         ui->label->setText("初始化DNN人脸检测失败！");
         led7.flash(500, 2);
         break;
