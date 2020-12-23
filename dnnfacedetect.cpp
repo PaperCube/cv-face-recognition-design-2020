@@ -24,9 +24,6 @@ std::vector<cv::Rect> dnnfacedetect::detect(cv::Mat frame) {
     using namespace std;
     using namespace cv;
     std::vector<Rect> rectangles;
-//    Mat tmpsrc = frame;
-//    M reu;
-//    vector<Mat> dsts = vector<Mat>();
     // 修改通道数
     if (frame.channels() == 4)
         cvtColor(frame, frame, COLOR_BGRA2BGR);
@@ -59,13 +56,7 @@ std::vector<cv::Rect> dnnfacedetect::detect(cv::Mat frame) {
                       (int)(xRightTop - xLeftBottom),
                       (int)(yRightTop - yLeftBottom));
             rectangles.push_back(rect);
-            //截出图矩形存放到dsts数组中
-//            Mat tmp = tmpsrc(rect);
-//            dsts.push_back(tmp);
-            //在原图上用红框画出矩形
-//            rectangle(frame, rect, Scalar(0, 0, 255));
         }
     }
-//    cv::resize(frame, reu.frameR, Size(640, 480), 0, 0, INTER_LINEAR);
     return rectangles;
 }

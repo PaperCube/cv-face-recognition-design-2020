@@ -26,8 +26,7 @@ class MainWindow : public QMainWindow {
     Ui::MainWindow *ui;
 
     detector_thread dt;
-
-//    QImage cvMat_to_QImage(const cv::Mat &mat);
+    
     cv::VideoCapture cap;
     cv::Mat frame;
     cv::Mat pic;
